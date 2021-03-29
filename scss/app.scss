@@ -1,0 +1,198 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:string";
+
+@function textShadow($color: black, $size: 1, $directionDown: true) {
+	$shadow: null;
+
+	@if ($directionDown) {
+		@for $i from 1 through $size {
+			$shadow: $shadow + "0 "+($i * 5)+"px #{$color},";
+		}
+	} @else {
+		@for $i from 1 through $size {
+			$shadow: $shadow + "0 -"+($i * 5)+"px #{$color},";
+		}
+	}
+    $shadow : string.slice($shadow, 1, -2); //powyżej generowałem tekst, a chce nie mieć cudzysłowów
+
+    @return string.unquote($shadow);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+body {
+    height: 100vh;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background-color: #02050B;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+//nadawanie tla dla background powoduje miganie
+.bg,
+.bg-bottom {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.bar {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 3;
+    display: flex;
+    gap: 5px;
+}
+.bar button {
+    border: 0;
+    background: none;
+    color: #aaa;
+    cursor: pointer;
+    outline: none;
+    padding: 5px;
+    min-width: 30px;
+    border: 1px solid rgba(#fff, 0.1);
+    border-radius: 2px;
+}
+.bar button:hover {
+    color: #fff;
+    border: 1px solid rgba(#fff, 0.3);
+}
+.bar button.active {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 2px #333;
+    background: rgba(#fff, 0.2);
+    border: 1px solid rgba(#fff, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer {
+    pointer-events: none;
+    opacity: 0.1;
+    filter: blur(3px);
+    transition: 1s filter, 1s transform, 1s opacity;
+    width: 100vw;
+    font-size: 18rem;
+    border-radius: 4px;
+    padding: 50px 0;
+    color: #fff;
+    z-index: 14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 900;
+    white-space: nowrap;
+    //-webkit-text-stroke: 1px rgba(#000, 0.3);
+    backdrop-filter: blur(2px);
+    border-top: 2px solid rgba(#fff ,0.05);
+    border-bottom: 1px solid rgba(#fff ,0.05);
+
+
+    .timer-clock {
+        transform: scale(0.9);
+        display: flex;
+        transition: 1s transform, 1s -webkit-mask-position;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        //filter: blur(1px);
+        z-index: 1;
+
+        $size: 8px;
+        $color1: rgba(#fff, 0.2);
+        $color2: black;
+
+        -webkit-mask-image:
+            linear-gradient(-45deg, $color2 25%, $color1 25%, $color1 50%, $color2 50%, $color2 75%, $color1 70%);
+        -webkit-mask-size: $size $size;
+    }
+    .timer-clock-shadow {
+        z-index: 0;
+        transition: 1s transform;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: rgba(0,0,0,0);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        filter:blur(4px);
+        text-shadow: textShadow(#fff, 150);
+    }
+}
+
+.timer.active {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+
+    .timer-clock {
+        transform: scale(1);
+    }
+    .timer-clock-shadow {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+//tlo powiekszajace sie wraz z postepem
+.timer-bg {
+    transition: none;
+    background: rgba(#fff,0.02);
+    display: flex;
+    width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: -1px;
+    --c1: #{rgba(#fff, 0.05)};
+    --c2: #{rgba(#fff, 0)};
+    $size: 5px;
+    background: linear-gradient(45deg,
+        var(--c1) 0%, var(--c1) 25%,
+        var(--c2) 25%, var(--c2) 50%,
+        var(--c1) 50%, var(--c1) 75%,
+        var(--c2) 75%, var(--c2) 100%
+    ) left / $size $size;
+}
+
+//kreska powiekszajaca sie wraz z postępem
+.timer-bar {
+    height: 5px;
+    width: 100%;
+    background: rgba(#fff, 0.1);
+    display: flex;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+
+    .timer-bar-progress {
+        background: #fff;
+        width: 0;
+        border-radius: 3px;
+        position: relative;
+    }
+}
+
+

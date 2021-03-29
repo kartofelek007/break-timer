@@ -1,0 +1,36 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "rimraf dist & electron-builder",
+    "dev": "sass scss/app.scss css/app.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "sass": "^1.32.8"
+  },
+  "build": {
+    "appId": "Timer",
+    "productName": "Timer",
+    "copyright": "Marcin Domański",
+    "files": [
+      "**/*",
+      "favicon.ico"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "favicon.ico"
+    },
+    "portable": {
+      "artifactName": "timer.exe"
+    }
+  },
+  "keywords": [],
+  "description": ""
+}

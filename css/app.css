@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  background-color: #02050B;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg,
+.bg-bottom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.bar {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 3;
+  display: flex;
+  gap: 5px;
+}
+
+.bar button {
+  border: 0;
+  background: none;
+  color: #aaa;
+  cursor: pointer;
+  outline: none;
+  padding: 5px;
+  min-width: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.bar button:hover {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bar button.active {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 2px #333;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.timer {
+  pointer-events: none;
+  opacity: 0.1;
+  filter: blur(3px);
+  transition: 1s filter, 1s transform, 1s opacity;
+  width: 100vw;
+  font-size: 18rem;
+  border-radius: 4px;
+  padding: 50px 0;
+  color: #fff;
+  z-index: 14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 900;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.timer .timer-clock {
+  transform: scale(0.9);
+  display: flex;
+  transition: 1s transform, 1s -webkit-mask-position;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(-45deg, black 25%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 50%, black 50%, black 75%, rgba(255, 255, 255, 0.2) 70%);
+  -webkit-mask-size: 8px 8px;
+}
+.timer .timer-clock-shadow {
+  z-index: 0;
+  transition: 1s transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: rgba(0, 0, 0, 0);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  filter: blur(4px);
+  text-shadow: 0 5px #fff,0 10px #fff,0 15px #fff,0 20px #fff,0 25px #fff,0 30px #fff,0 35px #fff,0 40px #fff,0 45px #fff,0 50px #fff,0 55px #fff,0 60px #fff,0 65px #fff,0 70px #fff,0 75px #fff,0 80px #fff,0 85px #fff,0 90px #fff,0 95px #fff,0 100px #fff,0 105px #fff,0 110px #fff,0 115px #fff,0 120px #fff,0 125px #fff,0 130px #fff,0 135px #fff,0 140px #fff,0 145px #fff,0 150px #fff,0 155px #fff,0 160px #fff,0 165px #fff,0 170px #fff,0 175px #fff,0 180px #fff,0 185px #fff,0 190px #fff,0 195px #fff,0 200px #fff,0 205px #fff,0 210px #fff,0 215px #fff,0 220px #fff,0 225px #fff,0 230px #fff,0 235px #fff,0 240px #fff,0 245px #fff,0 250px #fff,0 255px #fff,0 260px #fff,0 265px #fff,0 270px #fff,0 275px #fff,0 280px #fff,0 285px #fff,0 290px #fff,0 295px #fff,0 300px #fff,0 305px #fff,0 310px #fff,0 315px #fff,0 320px #fff,0 325px #fff,0 330px #fff,0 335px #fff,0 340px #fff,0 345px #fff,0 350px #fff,0 355px #fff,0 360px #fff,0 365px #fff,0 370px #fff,0 375px #fff,0 380px #fff,0 385px #fff,0 390px #fff,0 395px #fff,0 400px #fff,0 405px #fff,0 410px #fff,0 415px #fff,0 420px #fff,0 425px #fff,0 430px #fff,0 435px #fff,0 440px #fff,0 445px #fff,0 450px #fff,0 455px #fff,0 460px #fff,0 465px #fff,0 470px #fff,0 475px #fff,0 480px #fff,0 485px #fff,0 490px #fff,0 495px #fff,0 500px #fff,0 505px #fff,0 510px #fff,0 515px #fff,0 520px #fff,0 525px #fff,0 530px #fff,0 535px #fff,0 540px #fff,0 545px #fff,0 550px #fff,0 555px #fff,0 560px #fff,0 565px #fff,0 570px #fff,0 575px #fff,0 580px #fff,0 585px #fff,0 590px #fff,0 595px #fff,0 600px #fff,0 605px #fff,0 610px #fff,0 615px #fff,0 620px #fff,0 625px #fff,0 630px #fff,0 635px #fff,0 640px #fff,0 645px #fff,0 650px #fff,0 655px #fff,0 660px #fff,0 665px #fff,0 670px #fff,0 675px #fff,0 680px #fff,0 685px #fff,0 690px #fff,0 695px #fff,0 700px #fff,0 705px #fff,0 710px #fff,0 715px #fff,0 720px #fff,0 725px #fff,0 730px #fff,0 735px #fff,0 740px #fff,0 745px #fff,0 750px #fff;
+}
+
+.timer.active {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+.timer.active .timer-clock {
+  transform: scale(1);
+}
+.timer.active .timer-clock-shadow {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.timer-bg {
+  transition: none;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: -1px;
+  --c1: rgba(255, 255, 255, 0.05);
+  --c2: rgba(255, 255, 255, 0);
+  background: linear-gradient(45deg, var(--c1) 0%, var(--c1) 25%, var(--c2) 25%, var(--c2) 50%, var(--c1) 50%, var(--c1) 75%, var(--c2) 75%, var(--c2) 100%) left/5px 5px;
+}
+
+.timer-bar {
+  height: 5px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+}
+.timer-bar .timer-bar-progress {
+  background: #fff;
+  width: 0;
+  border-radius: 3px;
+  position: relative;
+}
+
+/*# sourceMappingURL=app.css.map */
