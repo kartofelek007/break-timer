@@ -124,7 +124,6 @@ body {
 }
 
 .timer-bg {
-  transition: none;
   background: rgba(255, 255, 255, 0.02);
   display: flex;
   width: 0;
